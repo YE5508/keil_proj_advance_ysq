@@ -21,11 +21,16 @@ extern "C" {
 #define LED_COUNT 4
 
 /* 种子工程先提供无参数版本，只操作 LED1；题目 1 将其扩展为带编号参数版本 */
-void led_on(uint8_t led_num);
-void led_off(uint8_t led_num);
-void blink(uint8_t current_led,uint32_t delay_ms);
-void led_flow(uint32_t delay_ms);
 
+typedef struct 
+{
+    uint8_t led_num;
+    uint32_t on_ms;
+    uint32_t off_ms;
+} LED_BlinkConfig;
+
+void blink(LED_BlinkConfig led_blinkconfig);
+void led_flow(LED_BlinkConfig led_blinkconfig);
 #ifdef __cplusplus
 }
 #endif

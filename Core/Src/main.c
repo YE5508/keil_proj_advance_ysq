@@ -45,7 +45,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+LED_BlinkConfig led_flow_start = {0U,250U,125U};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -107,7 +107,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    led_flow(250U);
+    led_flow(led_flow_start);
     /* USER CODE BEGIN 3 */
 
   }
