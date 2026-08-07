@@ -6,7 +6,7 @@
 #include "stdbool.h"
 static inline bool is_led_valid(uint8_t led_num)
 {
-    return (led_num+1 < LED_COUNT);
+    return (led_num < LED_COUNT);
 }
 
 /* 点亮 LED1 */
@@ -57,5 +57,23 @@ void led_off(uint8_t led_num)
         }
     }
 
+
+}
+
+void blink(uint8_t current_led,uint32_t delay_ms)
+{
+    led_on(current_led);
+    HAL_Delay(delay_ms);
+    led_off(current_led);
+}
+
+void led_flow(uint32_t delay_ms)
+{
+    uint8_t current_led = 0U;
+    while(current_led < LED_COUNT)
+    {
+        blink(current_led,delay_ms);
+        current_led ++;
+    }
 
 }
