@@ -18,10 +18,11 @@ extern "C" {
 #define LED2_PIN      GPIO_PIN_4
 #define LED3_PIN      GPIO_PIN_5
 #define LED4_PIN      GPIO_PIN_6
+#define LED_COUNT 4
 
 /* 种子工程先提供无参数版本，只操作 LED1；题目 1 将其扩展为带编号参数版本 */
-void led_on(void);
-void led_off(void);
+void led_on(uint8_t led_num);
+void led_off(uint8_t led_num);
 
 #ifdef __cplusplus
 }
