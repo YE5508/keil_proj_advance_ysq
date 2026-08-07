@@ -65,7 +65,7 @@ static void led_off(uint8_t led_num)
 
 }
 
-void blink(LED_BlinkConfig led_blinkconfig)
+static void blink_1(LED_BlinkConfig led_blinkconfig)
 {
     led_on(led_blinkconfig.led_num);
     HAL_Delay(led_blinkconfig.on_ms);
@@ -73,12 +73,74 @@ void blink(LED_BlinkConfig led_blinkconfig)
     HAL_Delay(led_blinkconfig.off_ms);
 }
 
-void led_flow(LED_BlinkConfig led_blinkconfig)
+static void blink_2(LED_BlinkConfig led_blinkconfig)
+{
+    uint8_t led_num1 = led_blinkconfig.led_num;
+    uint8_t led_num2 = (led_blinkconfig.led_num+1)%4;
+    led_on(led_num1);
+    led_on(led_num2);
+    HAL_Delay(led_blinkconfig.on_ms);
+    led_off(led_num1);
+    led_off(led_num2);
+    HAL_Delay(led_blinkconfig.off_ms);
+}
+
+static void blink_4(LED_BlinkConfig led_blinkconfig)
+{
+    for (uint8_t i =0;i<LED_COUNT;i++)
+    {
+        led_on(i);
+    }
+    HAL_Delay(led_blinkconfig.on_ms);
+    for (uint8_t i =0;i<LED_COUNT;i++)
+    {
+        led_off(i);
+    }
+    HAL_Delay(led_blinkconfig.off_ms);
+}
+
+static void led_flow_1(LED_BlinkConfig led_blinkconfig)
 {
     while(led_blinkconfig.led_num < LED_COUNT)
     {
-        blink(led_blinkconfig);
+        blink_1(led_blinkconfig);
         led_blinkconfig.led_num ++;
     }
 
+}
+
+static void led_flow_2(LED_BlinkConfig led_blinkconfig)
+{
+    while(led_blinkconfig.led_num < LED_COUNT)
+    {
+        blink_2(led_blinkconfig);
+        led_blinkconfig.led_num ++;
+    }
+
+}
+
+static void led_flow_4(LED_BlinkConfig led_blinkconfig)
+{
+    while(led_blinkconfig.led_num < LED_COUNT)
+    {
+        blink_4(led_blinkconfig);
+        led_blinkconfig.led_num ++;
+    }
+
+}
+
+void led_flow_statemachine(LED_FLOW_MODE led_flow_mode,LED_BlinkConfig led_blinkconfig)
+{
+    switch (led_flow_mode)
+    {
+        case MODE_1:
+            led_flow_1(led_blinkconfig);
+            break;
+        case MODE_2:
+            led_flow_2(led_blinkconfig);
+            break;
+        case MODE_4:
+            led_flow_4(led_blinkconfig);
+            break;
+    }
 }

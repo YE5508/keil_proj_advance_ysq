@@ -29,8 +29,15 @@ typedef struct
     uint32_t off_ms;
 } LED_BlinkConfig;
 
-void blink(LED_BlinkConfig led_blinkconfig);
-void led_flow(LED_BlinkConfig led_blinkconfig);
+typedef enum
+{
+    MODE_1 = 0,
+    MODE_2,
+    MODE_4,
+    
+}LED_FLOW_MODE;
+
+void led_flow_statemachine(LED_FLOW_MODE led_flow_mode,LED_BlinkConfig led_blinkconfig);
 #ifdef __cplusplus
 }
 #endif

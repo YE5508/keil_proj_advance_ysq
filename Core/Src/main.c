@@ -46,6 +46,7 @@
 
 /* USER CODE BEGIN PV */
 LED_BlinkConfig led_flow_start = {0U,250U,125U};
+int signal = 2;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -107,7 +108,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    led_flow(led_flow_start);
+    led_flow_statemachine(signal,led_flow_start);
     /* USER CODE BEGIN 3 */
 
   }
@@ -217,6 +218,7 @@ void Error_Handler(void)
   __disable_irq();
   while (1)
   {
+
   }
   /* USER CODE END Error_Handler_Debug */
 }
