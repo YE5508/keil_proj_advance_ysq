@@ -20,6 +20,10 @@ extern "C" {
 #define LED4_PIN      GPIO_PIN_6
 #define LED_COUNT 4
 
+#define LED_LEFT  (LED1_PIN | LED2_PIN)
+#define LED_RIGHT (LED3_PIN | LED4_PIN)
+#define LED_ALL   (LED1_PIN | LED2_PIN | LED3_PIN | LED4_PIN)
+
 /* 种子工程先提供无参数版本，只操作 LED1；题目 1 将其扩展为带编号参数版本 */
 
 typedef struct 
@@ -31,13 +35,17 @@ typedef struct
 
 typedef enum
 {
-    MODE_1 = 0,
+    MODE_0 =0,
+    MODE_1,
     MODE_2,
     MODE_4,
     
 }LED_FLOW_MODE;
 
-void led_flow_statemachine(LED_FLOW_MODE led_flow_mode);
+void led_set_mask(uint16_t pin_mask, GPIO_PinState state);
+void led_toggle_mask(uint16_t pin_mask);
+
+
 #ifdef __cplusplus
 }
 #endif

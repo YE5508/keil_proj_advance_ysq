@@ -429,6 +429,16 @@
               <FileType>1</FileType>
               <FilePath>../hardware/src/buzzer.c</FilePath>
             </File>
+            <File>
+              <FileName>led_flow.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\hardware\src\led_flow.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\hardware\src\timer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

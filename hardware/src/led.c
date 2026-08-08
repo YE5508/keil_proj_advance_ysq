@@ -134,18 +134,20 @@ static void led_flow_4(void)
 
 }
 
-void led_flow_statemachine(LED_FLOW_MODE led_flow_mode)
+
+/* led.c 内部：唯一的底层写入口 */
+static void led_write_mask(uint16_t pin_mask, GPIO_PinState state)
 {
-    switch (led_flow_mode)
-    {
-        case MODE_1:
-            led_flow_1();
-            break;
-        case MODE_2:
-            led_flow_2();
-            break;
-        case MODE_4:
-            led_flow_4();
-            break;
-    }
+    HAL_GPIO_WritePin(LED_GPIO_PORT, pin_mask, state);
 }
+
+void led_set_mask(uint16_t pin_mask, GPIO_PinState state)
+{
+    led_write_mask(pin_mask, state);
+}
+
+void led_toggle_mask(uint16_t pin_mask)
+{
+    HAL_GPIO_TogglePin(LED_GPIO_PORT, pin_mask);
+}
+
