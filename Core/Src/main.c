@@ -46,7 +46,7 @@
 
 /* USER CODE BEGIN PV */
 
-int signal = 3;
+int signal = 2;//定义mode
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/

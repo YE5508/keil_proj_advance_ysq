@@ -21,3 +21,29 @@ void buzzer_off(void)
 {
     HAL_GPIO_WritePin(BUZZER_GPIO_PORT, BUZZER_PIN, GPIO_PIN_RESET);
 }
+
+void buzzer_blink(timer *timer,BuzzerBlink buzzerblink)
+{
+    static uint8_t blink_flag = 0;
+    switch (blink_flag)
+    {
+        case 0:
+            buzzer_off();
+            if(timer_is_expired(timer,buzzerblink.off_ms))
+            {
+                blink_flag = 1;
+                timer_start(timer);
+            }
+            break;
+        
+        case 1:
+            buzzer_on();
+            if(timer_is_expired(timer,buzzerblink.on_ms))
+            {
+                blink_flag = 0;
+                timer_start(timer);
+            }
+            break;
+    }
+
+}

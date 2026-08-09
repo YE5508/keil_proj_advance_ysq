@@ -7,6 +7,7 @@
 #define BUZZER_H
 
 #include "stm32h7xx_hal.h"
+#include "timer.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -16,10 +17,23 @@ extern "C" {
 #define BUZZER_GPIO_PORT GPIOB
 #define BUZZER_PIN       GPIO_PIN_0
 
+/*类型定义*/
+
+typedef struct BuzzerBlink
+{
+    uint8_t on_ms;
+    uint8_t off_ms;
+    /* data */
+}BuzzerBlink;
+
+
+
 /* 函数声明（原型）：只声明函数存在，不写实现 */
 void buzzer_init(void);
 void buzzer_on(void);
 void buzzer_off(void);
+void buzzer_blink(timer *timer,BuzzerBlink buzzerblink);
+
 
 #ifdef __cplusplus
 }

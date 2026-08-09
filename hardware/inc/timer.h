@@ -27,8 +27,8 @@ typedef struct timer
 }timer;
 
 
-void timer_start(timer* timer,uint32_t duration);
-bool timer_is_expired (timer* timer);
+void timer_start(timer* timer);
+bool timer_is_expired (timer* timer,uint8_t duration);
 #ifdef __cplusplus
 }
 #endif

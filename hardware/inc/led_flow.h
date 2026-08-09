@@ -10,6 +10,7 @@
 #include "led.h"
 #include "stdbool.h"
 #include "timer.h"
+#include "buzzer.h"
 
 #ifdef __cplusplus
 extern "C" {
