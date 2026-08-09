@@ -46,7 +46,7 @@
 
 /* USER CODE BEGIN PV */
 
-int signal = 2;//定义mode
+int signal = 0;//定义mode
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -109,8 +109,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    led_flow_statemachine(new_mode,&current_mode);
+
     /* USER CODE BEGIN 3 */
+    LED_FLOW_MODE new_mode = (LED_FLOW_MODE)signal;
+    led_flow_statemachine(new_mode,&current_mode);
 
   }
   /* USER CODE END 3 */

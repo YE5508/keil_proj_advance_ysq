@@ -49,23 +49,27 @@ void led_flow_statemachine(LED_FLOW_MODE new_mode,LED_FLOW_MODE* current_mode )
         {   
             case MODE_0:
             led_set_mask(LED_ALL,GPIO_PIN_RESET);
+            current_step = 0;
             buzzer_off();
 
                 break;        
             case MODE_1:
             timer_start(&timer_led);
-            led_set_mask(mode1_steps[0],GPIO_PIN_SET);
+            led_set_mask(LED_ALL,GPIO_PIN_RESET);
+            current_step = 0;
             buzzer_off();
                 break;
             case MODE_2:
             timer_start(&timer_led);
-            led_set_mask(mode2_steps[0],GPIO_PIN_SET);
+            led_set_mask(LED_ALL,GPIO_PIN_RESET);
+            current_step = 0;
             buzzer_off();
             timer_start(&timer_buzzer);
                 break;
             case MODE_4:
             timer_start(&timer_led);
-            led_set_mask(mode4_steps[0],GPIO_PIN_SET);
+            led_set_mask(LED_ALL,GPIO_PIN_RESET);
+            current_step = 0;
             buzzer_off();
             timer_start(&timer_buzzer);
                 break;
@@ -96,7 +100,7 @@ void flow_update(uint8_t* mode_step,uint8_t steps,timer* timer,uint8_t* current_
 {
     if(timer_is_expired(timer,500))
     {
-        led_toggle_mask(mode_step[(++(*current_step))%steps]);
+        led_toggle_mask(mode_step[((*current_step)++)%steps]);
         timer_start(timer);
     }
 
