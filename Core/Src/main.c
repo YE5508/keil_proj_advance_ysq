@@ -46,7 +46,7 @@
 
 /* USER CODE BEGIN PV */
 
-int signal = 2;
+int signal = 3;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -99,6 +99,7 @@ int main(void)
   HAL_Delay(100U);
   buzzer_off();
   LED_FLOW_MODE new_mode = (LED_FLOW_MODE)signal;
+  LED_FLOW_MODE current_mode = MODE_0;
   /* 题目3完成后，在这里调用封装好的流水灯初始化/运行函数 */
 
   /* USER CODE END 2 */
@@ -108,7 +109,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    led_flow_statemachine(new_mode,&new_mode);
+    led_flow_statemachine(new_mode,&current_mode);
     /* USER CODE BEGIN 3 */
 
   }

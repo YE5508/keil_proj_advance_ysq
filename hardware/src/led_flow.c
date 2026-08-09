@@ -7,13 +7,13 @@
 static const uint8_t mode1_steps[] =
 {
     LED1_PIN,
-    0,
+    LED1_PIN,
     LED2_PIN,
-    0,
+    LED2_PIN,
     LED3_PIN,
-    0,
+    LED3_PIN,
     LED4_PIN,
-    0
+    LED4_PIN
 };
 #define MODE1_STEPS sizeof(mode1_steps)/sizeof(mode1_steps[0])
 
@@ -21,16 +21,15 @@ static const uint8_t mode1_steps[] =
 static const uint8_t mode2_steps[] =
 {
     LED_LEFT,
-    0,
+    LED_LEFT,
     LED_RIGHT,
-    0
+    LED_RIGHT
 };
 #define MODE2_STEPS sizeof(mode2_steps)/sizeof(mode2_steps[0])
 
 static const uint8_t mode4_steps[] =
 {
-    LED_ALL,
-    0
+    LED_ALL
 };
 #define MODE4_STEPS sizeof(mode4_steps)/sizeof(mode4_steps[0])
 
@@ -84,6 +83,7 @@ void flow_update(uint8_t* mode_step,uint8_t steps,timer* timer,uint8_t* current_
     if(timer_is_expired(timer))
     {
         led_toggle_mask(mode_step[(++(*current_step))%steps]);
+        timer_start(timer, 500);
     }
 }
 
